@@ -1,0 +1,49 @@
+.card-home {
+    box-shadow: 13px 13px 18px -7px rgba(0,0,0,0.83);
+}
+
+.card-home .title {
+    background-color: rgb(106, 140, 179);
+    color: white;
+    padding: 10px;
+    margin: 0 20px 20px 0px;
+    text-align: center;
+}
+
+.card-home img {
+    width: 250px;
+}
+
+.card-home .content .label {
+    font-weight: bold;
+}
+
+.card-home .content td {
+    padding: 15px 15px 15px 0;
+}
+
+.card-home a {
+    display: inline;
+}
+
+.card-home .social-media-icons {
+    background-color: rgb(106, 140, 179);
+    padding: 10px;
+    position: relative;
+    bottom: -15px;
+}
+
+.card-home .social-media-icons .bi {
+    border: 1px solid transparent;
+    border-radius: 50%;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: white;
+}
+
+.card-home .social-media-icons .bi:hover {
+    color: rgb(106, 140, 179);
+    background-color: white;
+}

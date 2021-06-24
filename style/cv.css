@@ -1,0 +1,57 @@
+.card-cv {
+    margin: 30px;
+}
+
+.card-cv .header {
+    text-align: center;
+    margin: 15px;
+}
+
+.card-cv .header h1 {
+    display: inline;
+    position: relative;
+    color: rgb(106, 140, 179);
+}
+
+.card-cv .header h1::before, .card-cv .header h1::after{
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    content: '';
+    width: 70px;
+    height: 10px;
+    background: rgb(106, 140, 179);
+}
+
+.card-cv .header h1::before {
+    left: -80px;
+}
+
+.card-cv .header h1::after {
+    right: -80px;
+}
+
+.card-cv .content {
+    text-align: left;
+    color: black;
+    font-size: 22px;
+}
+
+.cv-download-btn {
+    display: block;
+    padding: 30px;
+    margin: 10px;
+    width: 200px;
+    background-color: rgb(106, 140, 179);
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.cv-download-btn:hover {
+    cursor: pointer;
+    color: rgb(106, 140, 179);
+    background-color: white;
+    border: 1px solid rgb(106, 140, 179);
+}

@@ -1,0 +1,82 @@
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.top-nav-bar {
+    background-color: rgb(133, 130, 136);
+}
+
+
+
+
+.nav-item, .modal-nav-title {
+    color: white;
+    font-weight: bold;
+    padding: 20px;
+    text-align: center;
+}
+
+.active-nav-item {
+    color: white;
+    background-color: rgb(106, 140, 179);
+}
+
+.nav-item:hover {
+    color: white;
+    background-color: rgb(185, 183, 187);
+}
+
+
+.nav-icon {
+    display: none;
+    color: white;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.modal-nav .modal-content {
+    background-color: rgb(133, 130, 136);
+}
+
+.modal-nav {
+    position: fixed;
+    z-index: 99999;
+  }
+  .modal-nav .modal-dialog {
+    position: fixed;
+    margin: auto;
+    transform: translate3d(0%, 0, 0);
+  }
+
+  .modal-nav.fade .modal-dialog{
+    left: -50%;
+    transition: opacity 0.3s linear, left 0.3s ease-out;
+  }
+
+  .modal-nav.fade.show .modal-dialog{
+    left: 0;
+    box-shadow: 0px 0px 19px rgba(0,0,0,.5);
+  }
+
+
+
+
+@media (max-width: 991.98px) {
+    .nav-icon {
+        display: block;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    .nav-item {
+        text-align: left;
+    }
+
+    
+}

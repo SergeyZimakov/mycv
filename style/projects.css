@@ -1,0 +1,12 @@
+.card-project img {
+    width: 80%;
+}
+
+#projects .content {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card-project {
+    margin: 15px;
+}
