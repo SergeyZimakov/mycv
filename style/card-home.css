@@ -6,7 +6,6 @@
     background-color: rgb(106, 140, 179);
     color: white;
     padding: 10px;
-    /* margin: 0 20px 20px 0px; */
     text-align: center;
 }
 
@@ -29,8 +28,6 @@
 .card-home .social-media-icons {
     background-color: rgb(106, 140, 179);
     padding: 10px;
-    /* position: relative;
-    bottom: -15px; */
 }
 
 .card-home .social-media-icons .bi {
