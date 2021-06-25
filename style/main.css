@@ -21,7 +21,7 @@ main {
 }
 
 section {
-    margin: 50px;
+    margin: 50px 5px;
     padding: 50px 0;
 }
 
@@ -31,7 +31,7 @@ section {
     color: rgb(106, 140, 179);
     border: 2px solid rgb(106, 140, 179);
     font-weight: bold;
-    margin: 50px;
+    margin: 50px 0;
 }
 
 
