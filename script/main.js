@@ -40,8 +40,6 @@ function setClassForActiveLink() {
   const hash = window.location.hash;
   for (let index = 1; index < links.length - 1; index++) {
     const link = $(links[index]);
-    // const uriParts = link.href.split('#');
-    // const href = uriParts[1];
     const href = link[0].attributes.href.value;
     if (href === hash) {
       link.addClass('active-nav-item');
@@ -53,4 +51,12 @@ function setClassForActiveLink() {
 
 function dropdownToggle() {
   $('#downloadCV').dropdown('toggle')
+}
+
+function call() {
+  window.open('tel:+972544366021');
+}
+
+function email() {
+  window.open('mailto:zimakovs93@gmail.com');
 }

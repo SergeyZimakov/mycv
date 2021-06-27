@@ -34,6 +34,13 @@ section {
     margin: 50px 0;
 }
 
+footer {
+    margin-top: 50%;
+    height: 30px;
+    width: 100%;
+    background-color: black;
+}
+
 
 
 
