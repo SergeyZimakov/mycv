@@ -60,3 +60,7 @@ function call() {
 function email() {
   window.open('mailto:zimakovs93@gmail.com');
 }
+
+function linkedIn() {
+  window.open('https://www.linkedin.com/in/sergey-zimakov/','_blank');
+}
