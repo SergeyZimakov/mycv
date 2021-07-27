@@ -13,6 +13,10 @@
     width: 300px;
 }
 
+.card-home .content {
+    margin: 30px 0;
+}
+
 .card-home .content .label {
     font-weight: bold;
 }
@@ -23,6 +27,8 @@
 
 .card-home a {
     display: inline;
+    color: black;
+    text-decoration: underline;
 }
 
 .card-home .social-media-icons {
