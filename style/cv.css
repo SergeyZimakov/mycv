@@ -55,3 +55,11 @@
     background-color: white;
     border: 1px solid rgb(106, 140, 179);
 }
+
+.position {
+    font-weight: bold;
+}
+
+.period {
+    color: grey;
+}
