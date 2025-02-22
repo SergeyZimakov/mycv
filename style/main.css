@@ -45,7 +45,7 @@ footer {
     margin-left: 20px;
 }
 
-
-
-
-
+.comment {
+    text-align: start;
+    font-style: italic;
+}

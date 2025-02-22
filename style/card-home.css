@@ -29,6 +29,7 @@
     display: inline;
     color: black;
     text-decoration: underline;
+    margin-right: 5px;
 }
 
 .card-home .social-media-icons {
