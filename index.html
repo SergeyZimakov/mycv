@@ -133,14 +133,7 @@
             <div class="header">
               <h1>About Me</h1>
             </div>
-            <div class="content">
-              <p>Hi everyone,</p>
-              <p>I am backend developer with 3+ years of experience.</p>
-              <p>Living programming and learning new technologies. For me it isn't just a job, but also a favourite hobby.</p>
-              <p>Skilled in C#, API, SQL(include complex SP), ASP.Net, NodeJS, Javascript, Git.</p>
-              <p>Have basic knowledge in React, Angular, Flutter, GitHub Actions, CI/CD Proccess and Docker.</p>
-              <p>I am highly-motivated, organized, team-player and have strong self-learning skills.</p>
-            </div>        
+            <div id="aboutMe" class="content"></div>        
           </div>
         </div>
         <div class="row justify-content-center">
@@ -148,35 +141,7 @@
             <div class="header">
               <h1>Work Experience</h1>
             </div>
-            <div class="content">
-              <li>
-                <span class="position">Backend Developer</span><br>
-                <span class="company">Galcon</span><br>
-                <span class="period">April 2023 - Present</span>
-              </li>
-              <ul class="work-expirience-description">
-                <li>Developing API servers and communication servers with C# and NodeJS</li>
-                <li>Significant improvement of load test capabilities by developing a new application that simulates running a big number of devices under different conditions.</li>
-                <li>Promoting and moving new features to test by making integration between Embedded side and Frontend.</li>
-                <li>Taking a part and responsibilities in most of the company`s projects.</li>
-              </ul>
-              <li>
-                <span class="position">Full Stack Developer</span><br>
-                <span class="company">Catom LTD</span><br>
-                <span class="period">August 2021 - March 2023</span>
-              </li>
-              <ul class="work-expirience-description">
-                <li>Developing energy control system with ASP.Net, system and data base characterization.</li>
-                <li>Improving the timing of energy reports and bills generating by fixing and creating complex procedures and functions in SQL.</li>
-                <li>Achieving system improvement by developing new effective features.</li>
-                <li>Developing Windows Services with C#.</li>
-              </ul>
-              <li>
-                <span class="position">Differnt jobs at factories, like CNC Machine Operator At Iscar</span><br>
-                <span class="period">Until August 2021</span>
-              </li>
-              <!-- <p>The review of my projects you can see <a href="#projects">here</a> or on my <a href="https://github.com/SergeyZimakov" target="_blank" rel="noopener noreferrer">git</a>.</p> -->
-            </div>
+            <div id="work-experience-cards" class="content"></div>
           </div>           
         </div>
         <div class="row justify-content-center">
@@ -268,45 +233,51 @@
         <div class="section-header">
           <h1>My Projects</h1>
         </div>
-        <div class="content">
-          <p class="comment">*Full list of projects you can see on my git accaunt</p>
-          <div class="card-project">
-            <h2 class="title">CRM-MEAN</h2>
-            <div class="card-project-image">
-              <img src="./images/crm.JPG" alt="">
-            </div>  
-            <div class="card-project-body">
-              <p class="text">CRM application made with MongoDB, Express, Angular, NodeJS</p>
-              <p class="text">The application helps to get analytics of sales</p>
-              <p class="text">Deploy: <a href="https://powerful-cove-94717.herokuapp.com/overview" target="_blank" rel="noopener noreferrer">https://powerful-cove-94717.herokuapp.com/overview</a></p>
-              <p class="text">Git: <a href="https://github.com/SergeyZimakov/CRM-MEAN" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/CRM-MEAN</a></p>
-            </div>
+        <p class="comment">*Full list of projects you can see on my git accaunt</p>
+        <div class="row justify-content-center">
+          <div class="col-9 card-cv">
+            <div class="content">
+              <div class="card-project">
+                <h2 class="title">CRM-MEAN</h2>
+                <div class="card-project-body">
+                  <p class="text">Technologies: MongoDB, Express, Angular, NodeJS</p>
+                  <p class="text">The application helps to get analytics of sales</p>
+                  <p class="text">Git: <a href="https://github.com/SergeyZimakov/CRM-MEAN" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/CRM-MEAN</a></p>
+                </div>
+                <div class="card-project-image">
+                  <img src="./images/crm.JPG" alt="">
+                </div>  
+               
+              </div>
+              <hr>
+              <div class="card-project">
+                <h2 class="title">Vacations</h2>
+                <div class="card-project-image">
+                  <img src="./images/vacations.JPG" alt="">
+                </div>  
+                <div class="card-project-body">
+                  <p class="text">SPA made with MySQL, Express, React, SocketIO, NodeJS</p>
+                  <p class="text">The application allows to users to follow vacation tours, that was apploaded by admin</p>
+                  <p class="text">Git: <a href="https://github.com/SergeyZimakov/Vacation-326839818" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/Vacation-326839818</a></p>
+                </div>
+              </div>
+              <hr>
+              <div class="card-project">
+                <h2 class="title">Crypto Info</h2>
+                <div class="card-project-image">
+                  <img src="./images/crypto.JPG" alt="">
+                </div>  
+                <div class="card-project-body">
+                  <p class="text">SPA made with Javascript, Ajax requests</p>
+                  <p class="text">The application is using for following the information about the crypto currencies</p>
+                  <p class="text">Deploy: <a href="https://sergeyzimakov.github.io/Project_2/" target="_blank" rel="noopener noreferrer">https://sergeyzimakov.github.io/Project_2/</a></p>
+                  <p class="text">Git: <a href="https://github.com/SergeyZimakov/Project_2" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/Project_2</a></p>
+                </div>
+              </div>
           </div>
-          <hr>
-          <div class="card-project">
-            <h2 class="title">Vacations</h2>
-            <div class="card-project-image">
-              <img src="./images/vacations.JPG" alt="">
-            </div>  
-            <div class="card-project-body">
-              <p class="text">SPA made with MySQL, Express, React, SocketIO, NodeJS</p>
-              <p class="text">The application allows to users to follow vacation tours, that was apploaded by admin</p>
-              <p class="text">Git: <a href="https://github.com/SergeyZimakov/Vacation-326839818" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/Vacation-326839818</a></p>
-            </div>
-          </div>
-          <hr>
-          <div class="card-project">
-            <h2 class="title">Crypto Info</h2>
-            <div class="card-project-image">
-              <img src="./images/crypto.JPG" alt="">
-            </div>  
-            <div class="card-project-body">
-              <p class="text">SPA made with Javascript, Ajax requests</p>
-              <p class="text">The application is using for following the information about the crypto currencies</p>
-              <p class="text">Deploy: <a href="https://sergeyzimakov.github.io/Project_2/" target="_blank" rel="noopener noreferrer">https://sergeyzimakov.github.io/Project_2/</a></p>
-              <p class="text">Git: <a href="https://github.com/SergeyZimakov/Project_2" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/Project_2</a></p>
-            </div>
-          </div>
+        </div>
+          
+        
         </div>
       </div>
     </section>
@@ -344,7 +315,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="script/main.js"></script>
+    <script type="module" src="script/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 </body>
