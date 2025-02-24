@@ -1,4 +1,4 @@
-import { aboutMeItems, workExperienceItems } from "./state.js";
+import { state } from "./state.js";
 
 function toggleModalNavBar() {
   $("#modal-nav").modal('toggle');
@@ -56,79 +56,116 @@ function dropdownToggle() {
 }
 
 function call() {
-  window.open('tel:+972544366021');
+  window.open(`tel:${state.tel}`);
 }
 
 function email() {
-  window.open('mailto:zimakovs93@gmail.com');
+  window.open(`mailto:${state.email}`);
 }
 
 function linkedIn() {
-  window.open('https://www.linkedin.com/in/sergey-zimakov/','_blank');
+  window.open(state.linkedIn,'_blank');
 }
 
-function fillAboutMe() {
-  const aboutMeDiv = document.getElementById('aboutMe');
-  aboutMeItems.forEach(item => {
-    const p = document.createElement('p');
-    p.innerText = item;
-    aboutMeDiv.append(p);
-  });
+function fillTextListDiv(divId) {
+  const mainDiv = document.getElementById(divId);
+  let items = [];
+  switch (divId) {
+    case 'about-me':
+      items = state.aboutMeItems;
+      break;
+    case 'technical-skills':
+      items = state.technicalSkillsItems;
+      break;
+    case 'skills':
+      items = state.skillsItems;
+      break;
+    case 'languages':
+      items = state.languagesItems;
+      break;
+    default:
+      break;
+  }
+  mainDiv.innerHTML += items.map(i => `<p>${i}</p>`).join('');
 }
- 
-function fillWorkExperience() {
-  const cards = document.getElementById('work-experience-cards');
-  workExperienceItems.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'content-card';
+
+function fillExperienceOrEduction(option) {
+  const mainDiv = option === 'education'
+    ? document.getElementById('education')
+    : document.getElementById('work-experience');
+  
+  const items = option === 'education'
+    ? state.educationItems
+    : state.workExperienceItems;
+
+  items.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'content-card';
     if (!isEmptyString(item.position)) {
-      const positionDiv = document.createElement('div');
-      const positionText = document.createElement('span');
-      positionText.className = 'bold-text';
-      positionText.innerText = item.position;
-      positionDiv.append(positionText);
-      card.append(positionDiv);
+      itemDiv.innerHTML += `<div><span class='bold-text'>${item.position}</span></div>`;
     }
 
-    if (!isEmptyString(item.company)) {
-      const companyDiv = document.createElement('div');
-      const companyText = document.createElement('span');
-      companyText.innerText = item.company;
-      companyDiv.append(companyText);
-      card.append(companyDiv);
+    if (!isEmptyString(item.place)) {
+      itemDiv.innerHTML += `<div><span>${item.place}</span></div>`;
     }
 
     if (!isEmptyString(item.dates)) {
-      const datesDiv = document.createElement('div');
-      const datesText = document.createElement('span');
-      datesText.className = 'grey-text';
-      datesText.innerText = item.dates;
-      datesDiv.append(datesText);
-      card.append(datesDiv);
+      itemDiv.innerHTML += `<div><span class='grey-text'>${item.dates}</span></div>`;
     }
 
     if (item.description.length) {
-      const descriptionList = document.createElement('ul');
-      descriptionList.className = 'description-list';
-      item.description.forEach(di => {
-        const descItem = document.createElement('li');
-        descItem.innerText = di;
-        descriptionList.append(descItem);
-      });
-      card.append(descriptionList);
+      const descriptionItems = item.description.map(i => `<li>${i}</li>`).join('');
+      itemDiv.innerHTML += `<ul class='description-list'>${descriptionItems}</ul>`;
     }
 
-    cards.append(card);
+    mainDiv.append(itemDiv);
   });
 }
 
+function fillProjects() {
+  const mainDiv = document.getElementById("my-projects");
+  state.projectItems.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'content-card';
+
+    if (!isEmptyString(item.name)) {
+      itemDiv.innerHTML += `<div><span class='bold-text'>${item.name}</span></div>`;
+    }
+
+    if (!isEmptyString(item.technologies)) {
+      const year = !isEmptyString(item.year) ? ` - ${item.year}` : '';
+      itemDiv.innerHTML += `<div><span class='grey-text'>${item.technologies}${year}</span></div>`;
+    }
+
+    if (item.description.length) {
+      const descriptionItems = item.description.map(i => `<li>${i}</li>`).join('');
+      itemDiv.innerHTML += `<ul class='description-list'>${descriptionItems}</ul>`;
+    }
+
+    if (item.links.length) {
+      itemDiv.innerHTML += item.links.map(i => `<p class='text'>${i.name}: <a href='${i.link}' target='_blank' rel='noopener noreferrer'>${i.link}</a></p>`);
+    }
+
+    if (item.images.length) {
+      itemDiv.innerHTML += item.images.map(i => `<div class='card-project-image'><img src='${i}' alt=''></div>`).join('');
+    }
+
+    mainDiv.append(itemDiv);
+  });
+}
+ 
 function isEmptyString(str) {
   return str === '';
 }
 
 function init() {
-  fillAboutMe();
-  fillWorkExperience();
+  fillTextListDiv('about-me');
+  fillExperienceOrEduction('experience');
+  fillExperienceOrEduction('education');
+  fillTextListDiv('technical-skills');
+  fillTextListDiv('skills');
+  fillTextListDiv('languages');
+  fillProjects();
 }
 
 init();
