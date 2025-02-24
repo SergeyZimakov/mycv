@@ -1,3 +1,5 @@
+import { state } from "./state.js";
+
 function toggleModalNavBar() {
   $("#modal-nav").modal('toggle');
 }
@@ -54,13 +56,146 @@ function dropdownToggle() {
 }
 
 function call() {
-  window.open('tel:+972544366021');
+  window.open(`tel:${state.tel}`);
 }
 
 function email() {
-  window.open('mailto:zimakovs93@gmail.com');
+  window.open(`mailto:${state.email}`);
 }
 
 function linkedIn() {
-  window.open('https://www.linkedin.com/in/sergey-zimakov/','_blank');
+  window.open(state.linkedIn,'_blank');
 }
+
+function fillMyData() {
+  const icons = [
+    { class: "bi bi-linkedin", link: "https://www.linkedin.com/in/sergey-zimakov/" },
+    { class: "bi bi-github", link: "https://github.com/SergeyZimakov" },
+    { class: "bi bi-google", link: "mailto:zimakovs93@gmail.com" },
+    { class: "bi bi-facebook", link: "https://www.facebook.com/serega.zimakov" },
+  ]
+
+  document.getElementById('my-name').innerText = state.name;
+  document.getElementById('my-position').innerText = state.position;
+  document.getElementById('my-tel').innerHTML = `<a href='tel:${state.tel}'>${state.tel}</a>`;
+  document.getElementById('my-email').innerHTML = `<a href='mailto:${state.email}'>${state.email}</a>`;
+  document.getElementById('my-cvs').innerHTML = state.cvFiles.map(cv => `<a href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  document.getElementById('my-icons').innerHTML = icons.map(icon => {
+    const attr = icon.class === 'bi bi-google' ? '' : 'target="_blank" rel="noopener noreferrer"';
+    return `<a href='${icon.link}' ${attr}><i class='${icon.class}'></i></i></a>`;
+  }).join('');
+
+  document.getElementById('contact-name').innerText = state.name;
+  document.getElementById('contact-tel').innerText = state.tel;
+  document.getElementById('contact-email').innerText = state.email;
+}
+
+function fillDownloadCV() {
+  document.getElementById('download-cv-eng').innerHTML = state.cvFiles.filter(cv => cv.name.endsWith('(Eng)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  document.getElementById('download-cv-heb').innerHTML = state.cvFiles.filter(cv => cv.name.endsWith('(Heb)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+}
+
+function fillTextListDiv(divId) {
+  const mainDiv = document.getElementById(divId);
+  let items = [];
+  switch (divId) {
+    case 'about-me':
+      items = state.aboutMeItems;
+      break;
+    case 'technical-skills':
+      items = state.technicalSkillsItems;
+      break;
+    case 'skills':
+      items = state.skillsItems;
+      break;
+    case 'languages':
+      items = state.languagesItems;
+      break;
+    default:
+      break;
+  }
+  mainDiv.innerHTML += items.map(i => `<p>${i}</p>`).join('');
+}
+
+function fillExperienceOrEduction(option) {
+  const mainDiv = option === 'education'
+    ? document.getElementById('education')
+    : document.getElementById('work-experience');
+  
+  const items = option === 'education'
+    ? state.educationItems
+    : state.workExperienceItems;
+
+  items.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'content-card';
+    if (!isEmptyString(item.position)) {
+      itemDiv.innerHTML += `<div><span class='bold-text'>${item.position}</span></div>`;
+    }
+
+    if (!isEmptyString(item.place)) {
+      itemDiv.innerHTML += `<div><span>${item.place}</span></div>`;
+    }
+
+    if (!isEmptyString(item.dates)) {
+      itemDiv.innerHTML += `<div><span class='grey-text'>${item.dates}</span></div>`;
+    }
+
+    if (item.description.length) {
+      const descriptionItems = item.description.map(i => `<li>${i}</li>`).join('');
+      itemDiv.innerHTML += `<ul class='description-list'>${descriptionItems}</ul>`;
+    }
+
+    mainDiv.append(itemDiv);
+  });
+}
+
+function fillProjects() {
+  const mainDiv = document.getElementById("my-projects");
+  state.projectItems.forEach(item => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = 'content-card';
+
+    if (!isEmptyString(item.name)) {
+      itemDiv.innerHTML += `<div><span class='bold-text'>${item.name}</span></div>`;
+    }
+
+    if (!isEmptyString(item.technologies)) {
+      const year = !isEmptyString(item.year) ? ` - ${item.year}` : '';
+      itemDiv.innerHTML += `<div><span class='grey-text'>${item.technologies}${year}</span></div>`;
+    }
+
+    if (item.description.length) {
+      const descriptionItems = item.description.map(i => `<li>${i}</li>`).join('');
+      itemDiv.innerHTML += `<ul class='description-list'>${descriptionItems}</ul>`;
+    }
+
+    if (item.links.length) {
+      itemDiv.innerHTML += item.links.map(i => `<p class='text'>${i.name}: <a href='${i.link}' target='_blank' rel='noopener noreferrer'>${i.link}</a></p>`);
+    }
+
+    if (item.images.length) {
+      itemDiv.innerHTML += item.images.map(i => `<div class='card-project-image'><img src='${i}' alt=''></div>`).join('');
+    }
+
+    mainDiv.append(itemDiv);
+  });
+}
+ 
+function isEmptyString(str) {
+  return str === '';
+}
+
+function init() {
+  fillMyData();
+  fillTextListDiv('about-me');
+  fillExperienceOrEduction('experience');
+  fillExperienceOrEduction('education');
+  fillTextListDiv('technical-skills');
+  fillTextListDiv('skills');
+  fillTextListDiv('languages');
+  fillDownloadCV();
+  fillProjects();
+}
+
+init();

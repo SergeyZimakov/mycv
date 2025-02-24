@@ -56,10 +56,10 @@
     border: 1px solid rgb(106, 140, 179);
 }
 
-.position {
+.bold-text {
     font-weight: bold;
 }
 
-.period {
+.grey-text {
     color: grey;
 }
