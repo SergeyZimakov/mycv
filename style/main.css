@@ -22,7 +22,6 @@ main {
 
 section {
     margin: 50px 5px;
-    padding: 50px 0;
 }
 
 .section-header {
@@ -48,4 +47,12 @@ footer {
 .comment {
     text-align: start;
     font-style: italic;
+}
+
+.content-card {
+    margin-bottom: 15px;
+}
+
+.content-card img {
+    width: 50%;
 }

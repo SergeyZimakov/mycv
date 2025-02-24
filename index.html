@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="style/cv.css">
     <link rel="stylesheet" type="text/css" href="style/contact.css">
     <link rel="stylesheet" type="text/css" href="style/card-home.css">
-    <link rel="stylesheet" type="text/css" href="style/projects.css">
 </head>
 <body>
 
@@ -79,42 +78,28 @@
               </div>
               <div class="col d-flex flex-column justify-content-between" style="padding: 0 0 10px 0;">
                 <div class="title">
-                  <h1>Sergey Zimakov</h1>
-                  <h3>Full Web Stack Developer</h3>
+                  <h1 id="my-name"></h1>
+                  <h3 id="my-position"></h3>
                 </div>
                 <div class="content">
                   <table>
                     <tbody>
-                      <!-- <tr>
-                        <td class="label">Age:</td>
-                        <td>28</td>
-                      </tr> -->
                       <tr>
                         <td class="label">Phone:</td>
-                        <td><a href="tel:+972544366021">+972-54-43-66-021</a></td>
+                        <td id="my-tel"></td>
                       </tr>
                       <tr>
                       <tr>
                         <td class="label">Email:</td>
-                        <td><a href="mailto:zimakovs93@gmail.com">zimakovs93@gmail.com</i></a></td>
+                        <td id="my-email"></td>
                       </tr>
                         <td class="label">CV:</td>
-                        <td>
-                          <a href="./cv/Zimakov_CV_Eng.pdf" target="_blank" rel="noopener noreferrer">PDF(Eng)</a>
-                          <a href="./cv/Zimakov_CV_Heb.pdf" target="_blank" rel="noopener noreferrer">PDF(Heb)</a>
-                          <a href="./cv/Zimakov_CV_Eng.docx" target="_blank" rel="noopener noreferrer">Word(Eng)</a>
-                          <a href="./cv/Zimakov_CV_Heb.docx" target="_blank" rel="noopener noreferrer">Word(Heb)</a>
-                        </td>
+                        <td id="my-cvs"></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="social-media-icons">
-                  <a href="https://www.linkedin.com/in/sergey-zimakov/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></i></a>
-                  <a href="https://github.com/SergeyZimakov" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
-                  <a href="mailto:zimakovs93@gmail.com"><i class="bi bi-google"></i></a>
-                  <a href="https://www.facebook.com/serega.zimakov" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
-                </div>
+                <div id="my-icons" class="social-media-icons"></div>
               </div>
             </div>
           </div>
@@ -133,7 +118,7 @@
             <div class="header">
               <h1>About Me</h1>
             </div>
-            <div id="aboutMe" class="content"></div>        
+            <div id="about-me" class="content"></div>        
           </div>
         </div>
         <div class="row justify-content-center">
@@ -141,7 +126,7 @@
             <div class="header">
               <h1>Work Experience</h1>
             </div>
-            <div id="work-experience-cards" class="content"></div>
+            <div id="work-experience" class="content"></div>
           </div>           
         </div>
         <div class="row justify-content-center">
@@ -149,14 +134,7 @@
             <div class="header">
               <h1>Education</h1>
             </div>
-            <div class="content">
-              <ul>
-                <li>March 2020 - April 2021 - Full Stack Web Development, John Brice, graduated with honors</li>
-                <li>October 2018 - March 2019 - Programming Engineer, ORT Braude (termination of study due to personal reasons)</li>
-                <li>October 2015 - June 2017 - Junior Electro-Mechanical Engineer, ORT Braude, graduated with honors</li>
-                <li>Different programming courses on Udemy</li>
-              </ul>
-            </div>
+            <div id="education" class="content"></div>
           </div>           
         </div>
         <div class="row justify-content-center">
@@ -166,15 +144,7 @@
             </div>
             <div class="content">
               <div class="d-flex justify-content-start">
-                <div style="margin: 10px;">
-                  <ul>
-                    <li>C#, NodeJS, SQL</li>
-                    <li>API, .Net, Services</li>
-                    <li>Git, CI/CD, Jira</li>
-                    <li>Docker(basic knowledge)</li>
-                    <li>Flutter(basic knowledge)</li>
-                  </ul>
-                </div>
+                <div id="technical-skills" style="margin: 10px;"></div>
               </div>
             </div>
           </div>           
@@ -184,15 +154,7 @@
             <div class="header">
               <h1>Skills</h1>
             </div>
-            <div class="content">
-              <ul>
-                <li>Target oriented</li>
-                <li>Self-learner</li>
-                <li>Team Player</li>
-                <li>Organized</li>
-                <li>Highly motivated</li>
-              </ul>
-            </div>
+            <div id="skills" class="content"></div>
           </div>           
         </div>
         <div class="row justify-content-center">
@@ -200,13 +162,7 @@
             <div class="header">
               <h1>Languages</h1>
             </div>
-            <div class="content">
-              <ul>
-                <li>Hebrew - native</li>
-                <li>Russian - native</li>
-                <li>English - full professional proficiency</li>
-              </ul>
-            </div>
+            <div id="languages" class="content"></div>
           </div>           
         </div>
         <div class="row justify-content-center">
@@ -214,14 +170,8 @@
             <div class="header">
               <h1>Download CV</h1>
             </div>
-            <div class="content d-flex flex-wrap justify-content-center">
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Eng.pdf" target="_blank" rel="noopener noreferrer">PDF(Eng)</a>
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Eng.docx" target="_blank" rel="noopener noreferrer">Word(Eng)</a>
-            </div>
-            <div class="content d-flex flex-wrap justify-content-center">
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Heb.pdf" target="_blank" rel="noopener noreferrer">PDF(Heb)</a>
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Heb.docx" target="_blank" rel="noopener noreferrer">Word(Heb)</a>
-            </div>
+            <div id="download-cv-eng" class="content d-flex flex-wrap justify-content-center"></div>
+            <div id="download-cv-heb" class="content d-flex flex-wrap justify-content-center"></div>
           </div>           
         </div>
       </div>
@@ -236,45 +186,7 @@
         <p class="comment">*Full list of projects you can see on my git accaunt</p>
         <div class="row justify-content-center">
           <div class="col-9 card-cv">
-            <div class="content">
-              <div class="card-project">
-                <h2 class="title">CRM-MEAN</h2>
-                <div class="card-project-body">
-                  <p class="text">Technologies: MongoDB, Express, Angular, NodeJS</p>
-                  <p class="text">The application helps to get analytics of sales</p>
-                  <p class="text">Git: <a href="https://github.com/SergeyZimakov/CRM-MEAN" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/CRM-MEAN</a></p>
-                </div>
-                <div class="card-project-image">
-                  <img src="./images/crm.JPG" alt="">
-                </div>  
-               
-              </div>
-              <hr>
-              <div class="card-project">
-                <h2 class="title">Vacations</h2>
-                <div class="card-project-image">
-                  <img src="./images/vacations.JPG" alt="">
-                </div>  
-                <div class="card-project-body">
-                  <p class="text">SPA made with MySQL, Express, React, SocketIO, NodeJS</p>
-                  <p class="text">The application allows to users to follow vacation tours, that was apploaded by admin</p>
-                  <p class="text">Git: <a href="https://github.com/SergeyZimakov/Vacation-326839818" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/Vacation-326839818</a></p>
-                </div>
-              </div>
-              <hr>
-              <div class="card-project">
-                <h2 class="title">Crypto Info</h2>
-                <div class="card-project-image">
-                  <img src="./images/crypto.JPG" alt="">
-                </div>  
-                <div class="card-project-body">
-                  <p class="text">SPA made with Javascript, Ajax requests</p>
-                  <p class="text">The application is using for following the information about the crypto currencies</p>
-                  <p class="text">Deploy: <a href="https://sergeyzimakov.github.io/Project_2/" target="_blank" rel="noopener noreferrer">https://sergeyzimakov.github.io/Project_2/</a></p>
-                  <p class="text">Git: <a href="https://github.com/SergeyZimakov/Project_2" target="_blank" rel="noopener noreferrer">https://github.com/SergeyZimakov/Project_2</a></p>
-                </div>
-              </div>
-          </div>
+            <div id="my-projects" class="content"></div>
         </div>
           
         
@@ -290,15 +202,15 @@
         <div class="d-flex flex-column align-items-center">
           <div class="contact-card d-flex justify-content-start align-items-center" onclick="linkedIn()">
             <i class="bi bi-linkedin"></i>
-            <p>Sergey Zimakov</p>
+            <p id="contact-name"></p>
           </div>
           <div class="contact-card d-flex justify-content-start align-items-center" onclick="call()">
             <i class="bi bi-phone"></i>
-            <p>+972-54-43-66-021</p>
+            <p id="contact-tel"></p>
           </div>
           <div class="contact-card d-flex justify-content-start align-items-center" onclick="email()">
             <i class="bi bi-envelope"></i>
-            <p>zimakovs93@gmail.com</p>
+            <p id="contact-email"></p>
           </div>
         </div>
       </div>
@@ -307,12 +219,6 @@
       
     </footer>
   </main>
-
-      
-
-
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script type="module" src="script/main.js"></script>
