@@ -78,42 +78,28 @@
               </div>
               <div class="col d-flex flex-column justify-content-between" style="padding: 0 0 10px 0;">
                 <div class="title">
-                  <h1>Sergey Zimakov</h1>
-                  <h3>Backend Developer</h3>
+                  <h1 id="my-name"></h1>
+                  <h3 id="my-position"></h3>
                 </div>
                 <div class="content">
                   <table>
                     <tbody>
-                      <!-- <tr>
-                        <td class="label">Age:</td>
-                        <td>28</td>
-                      </tr> -->
                       <tr>
                         <td class="label">Phone:</td>
-                        <td><a href="tel:+972544366021">+972-54-43-66-021</a></td>
+                        <td id="my-tel"></td>
                       </tr>
                       <tr>
                       <tr>
                         <td class="label">Email:</td>
-                        <td><a href="mailto:zimakovs93@gmail.com">zimakovs93@gmail.com</i></a></td>
+                        <td id="my-email"></td>
                       </tr>
                         <td class="label">CV:</td>
-                        <td>
-                          <a href="./cv/Zimakov_CV_Eng.pdf" target="_blank" rel="noopener noreferrer">PDF(Eng)</a>
-                          <a href="./cv/Zimakov_CV_Heb.pdf" target="_blank" rel="noopener noreferrer">PDF(Heb)</a>
-                          <a href="./cv/Zimakov_CV_Eng.docx" target="_blank" rel="noopener noreferrer">Word(Eng)</a>
-                          <a href="./cv/Zimakov_CV_Heb.docx" target="_blank" rel="noopener noreferrer">Word(Heb)</a>
-                        </td>
+                        <td id="my-cvs"></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class="social-media-icons">
-                  <a href="https://www.linkedin.com/in/sergey-zimakov/" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin"></i></i></a>
-                  <a href="https://github.com/SergeyZimakov" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i></a>
-                  <a href="mailto:zimakovs93@gmail.com"><i class="bi bi-google"></i></a>
-                  <a href="https://www.facebook.com/serega.zimakov" target="_blank" rel="noopener noreferrer"><i class="bi bi-facebook"></i></a>
-                </div>
+                <div id="my-icons" class="social-media-icons"></div>
               </div>
             </div>
           </div>
@@ -184,14 +170,8 @@
             <div class="header">
               <h1>Download CV</h1>
             </div>
-            <div class="content d-flex flex-wrap justify-content-center">
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Eng.pdf" target="_blank" rel="noopener noreferrer">PDF(Eng)</a>
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Eng.docx" target="_blank" rel="noopener noreferrer">Word(Eng)</a>
-            </div>
-            <div class="content d-flex flex-wrap justify-content-center">
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Heb.pdf" target="_blank" rel="noopener noreferrer">PDF(Heb)</a>
-              <a class="cv-download-btn" href="./cv/Zimakov_CV_Heb.docx" target="_blank" rel="noopener noreferrer">Word(Heb)</a>
-            </div>
+            <div id="download-cv-eng" class="content d-flex flex-wrap justify-content-center"></div>
+            <div id="download-cv-heb" class="content d-flex flex-wrap justify-content-center"></div>
           </div>           
         </div>
       </div>
@@ -222,15 +202,15 @@
         <div class="d-flex flex-column align-items-center">
           <div class="contact-card d-flex justify-content-start align-items-center" onclick="linkedIn()">
             <i class="bi bi-linkedin"></i>
-            <p>Sergey Zimakov</p>
+            <p id="contact-name"></p>
           </div>
           <div class="contact-card d-flex justify-content-start align-items-center" onclick="call()">
             <i class="bi bi-phone"></i>
-            <p>+972-54-43-66-021</p>
+            <p id="contact-tel"></p>
           </div>
           <div class="contact-card d-flex justify-content-start align-items-center" onclick="email()">
             <i class="bi bi-envelope"></i>
-            <p>zimakovs93@gmail.com</p>
+            <p id="contact-email"></p>
           </div>
         </div>
       </div>

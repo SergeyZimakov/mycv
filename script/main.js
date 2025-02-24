@@ -67,6 +67,34 @@ function linkedIn() {
   window.open(state.linkedIn,'_blank');
 }
 
+function fillMyData() {
+  const icons = [
+    { class: "bi bi-linkedin", link: "https://www.linkedin.com/in/sergey-zimakov/" },
+    { class: "bi bi-github", link: "https://github.com/SergeyZimakov" },
+    { class: "bi bi-google", link: "mailto:zimakovs93@gmail.com" },
+    { class: "bi bi-facebook", link: "https://www.facebook.com/serega.zimakov" },
+  ]
+
+  document.getElementById('my-name').innerText = state.name;
+  document.getElementById('my-position').innerText = state.position;
+  document.getElementById('my-tel').innerHTML = `<a href='tel:${state.tel}'>${state.tel}</a>`;
+  document.getElementById('my-email').innerHTML = `<a href='mailto:${state.email}'>${state.email}</a>`;
+  document.getElementById('my-cvs').innerHTML = state.cvFiles.map(cv => `<a href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  document.getElementById('my-icons').innerHTML = icons.map(icon => {
+    const attr = icon.class === 'bi bi-google' ? '' : 'target="_blank" rel="noopener noreferrer"';
+    return `<a href='${icon.link}' ${attr}><i class='${icon.class}'></i></i></a>`;
+  }).join('');
+
+  document.getElementById('contact-name').innerText = state.name;
+  document.getElementById('contact-tel').innerText = state.tel;
+  document.getElementById('contact-email').innerText = state.email;
+}
+
+function fillDownloadCV() {
+  document.getElementById('download-cv-eng').innerHTML = state.cvFiles.filter(cv => cv.name.endsWith('(Eng)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  document.getElementById('download-cv-heb').innerHTML = state.cvFiles.filter(cv => cv.name.endsWith('(Heb)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+}
+
 function fillTextListDiv(divId) {
   const mainDiv = document.getElementById(divId);
   let items = [];
@@ -159,12 +187,14 @@ function isEmptyString(str) {
 }
 
 function init() {
+  fillMyData();
   fillTextListDiv('about-me');
   fillExperienceOrEduction('experience');
   fillExperienceOrEduction('education');
   fillTextListDiv('technical-skills');
   fillTextListDiv('skills');
   fillTextListDiv('languages');
+  fillDownloadCV();
   fillProjects();
 }
 
