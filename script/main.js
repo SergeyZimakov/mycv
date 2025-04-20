@@ -1,8 +1,7 @@
 import { state } from "./state.js";
 
-function fillCVFromFile() {
-  const cv = document.getElementById('cv');
-
+async function fillCVFromFile() {
+  const cv = document.getElementById('cv-section-content');
 
   const convertToHtmlOptions = {
     styleMap: [
@@ -10,39 +9,41 @@ function fillCVFromFile() {
     ]
   };
 
-  fetch("./cv/Zimakov_Resume_Eng.docx")
-    .then(res => res.arrayBuffer())
-    .then(buffer => mammoth.convertToHtml({ arrayBuffer: buffer }, convertToHtmlOptions))
-    .then(result => {
-      const html = result.value;
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-  
-      const sections = [];
-      let current = null;
-  
-      doc.body.childNodes.forEach(node => {
-        if (node.nodeName === "H1") {
-          if (current) sections.push(current);
-          current = { title: node.textContent, content: "" };
-        } else if (current) {
-          if (node.nodeName === "TABLE") {
-            const parsed = parseTableToDivs(node);
-            current.content += parsed.outerHTML;
-          }
-          else {
-            current.content += node.outerHTML || node.textContent;
-          }
+  try {
+    const doc = await fetch("./cv/Zimakov_Resume_Eng.docx")
+    const buffer = await doc.arrayBuffer();
+    const converted = await mammoth.convertToHtml({ arrayBuffer: buffer }, convertToHtmlOptions);
+
+    const parser = new DOMParser();
+    const document = parser.parseFromString(converted.value, "text/html");
+
+    const sections = [];
+    let current = null;
+
+    document.body.childNodes.forEach(node => {
+      if (node.nodeName === "H1") {
+        if (current) sections.push(current);
+        current = { title: node.textContent, content: "" };
+      } else if (current) {
+        if (node.nodeName === "TABLE") {
+          const parsed = parseTableToDivs(node);
+          current.content += parsed.outerHTML;
         }
-      });
-      if (current) sections.push(current);
-      
-      sections.forEach(section => {
-        cv.innerHTML += getCVSectionHTML(section);
-      });
-      
-    })
-    .catch(err => window.alert("Error:", err.message));
+        else {
+          current.content += node.outerHTML || node.textContent;
+        }
+      }
+    });
+    if (current) sections.push(current);
+    
+    sections.forEach(section => {
+      cv.innerHTML += getCVSectionHTML(section);
+    });
+    cv.innerHTML += getDownloadCVHtml();
+
+  } catch (error) {
+    window.alert(`Error: ${error.message}`);
+  }
 }
 
 function parseTableToDivs(tableNode) {
@@ -77,6 +78,22 @@ function getCVSectionHTML(section) {
               <div id="${id}" class="content">${section.content}</div>        
             </div>
           </div>`;
+}
+
+function getDownloadCVHtml() {
+  const engCV = state.cvFiles.filter(cv => cv.name.endsWith('(Eng)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  const hebCV = state.cvFiles.filter(cv => cv.name.endsWith('(Heb)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  return `
+    <div class="row justify-content-center">
+      <div class="col-9 card-cv">
+        <div class="header">
+          <h1>Download CV</h1>
+        </div>
+        <div id="download-cv-eng" class="content d-flex flex-wrap justify-content-center">${engCV}</div>
+        <div id="download-cv-heb" class="content d-flex flex-wrap justify-content-center">${hebCV}</div>
+      </div>           
+    </div>
+  `
 }
 
 function toggleModalNavBar() {
@@ -267,14 +284,14 @@ function isEmptyString(str) {
 
 function init() {
   fillMyData();
-  fillTextListDiv('about-me');
-  fillExperienceOrEduction('experience');
-  fillExperienceOrEduction('education');
-  fillTextListDiv('technical-skills');
-  fillTextListDiv('skills');
-  fillTextListDiv('languages');
-  fillDownloadCV();
-  fillProjects();
+  // fillTextListDiv('about-me');
+  // fillExperienceOrEduction('experience');
+  // fillExperienceOrEduction('education');
+  // fillTextListDiv('technical-skills');
+  // fillTextListDiv('skills');
+  // fillTextListDiv('languages');
+  // fillDownloadCV();
+  // fillProjects();
   fillCVFromFile();
 }
 
