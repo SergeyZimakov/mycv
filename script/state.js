@@ -8,10 +8,10 @@ export const state = {
     facebook: "https://www.facebook.com/serega.zimakov",
     myPhoto: "./images/me.jpg",
     cvFiles: [
-        { name: "PDF(Eng)", link: "./cv/Zimakov_CV_Eng.pdf" },
-        { name: "PDF(Heb)", link: "./cv/Zimakov_CV_Heb.pdf" },
-        { name: "Word(Eng)", link: "./cv/Zimakov_CV_Eng.docx" },
-        { name: "PDF(Heb)", link: "./cv/Zimakov_CV_Heb.docx" },
+        { name: "PDF(Eng)", link: "./cv/Zimakov_Resume_Eng.pdf" },
+        { name: "PDF(Heb)", link: "./cv/Zimakov_Resume_Heb.pdf" },
+        { name: "Word(Eng)", link: "./cv/Zimakov_Resume_Eng.docx" },
+        { name: "PDF(Heb)", link: "./cv/Zimakov_Resume_Heb.docx" },
     ],
     aboutMeItems: [
         "Hi everyone,",
