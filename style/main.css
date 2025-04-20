@@ -10,7 +10,7 @@ body {
     font-family: 'Cabin', sans-serif;
 }
 
-ul, li { display: block; list-style: none; padding: 0;}
+/* ul, li { display: block; list-style: none; padding: 0;} */
 a { 
     /* display: block; */
     text-decoration: none;
