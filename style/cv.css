@@ -10,7 +10,7 @@
 .card-cv .header h1 {
     display: inline;
     position: relative;
-    color: rgb(106, 140, 179);
+    color: var(--main-color);
 }
 
 .card-cv .header h1::before, .card-cv .header h1::after{
@@ -20,7 +20,7 @@
     content: '';
     width: 70px;
     height: 10px;
-    background: rgb(106, 140, 179);
+    background: var(--main-color);
 }
 
 .card-cv .header h1::before {
@@ -42,7 +42,7 @@
     padding: 30px;
     margin: 10px;
     width: 200px;
-    background-color: rgb(106, 140, 179);
+    background-color: var(--main-color);
     color: white;
     border: 1px solid transparent;
     border-radius: 25px;
@@ -53,7 +53,7 @@
     cursor: pointer;
     color: rgb(106, 140, 179);
     background-color: white;
-    border: 1px solid rgb(106, 140, 179);
+    border: 1px solid var(--main-color);
 }
 
 .bold-text {
@@ -62,4 +62,12 @@
 
 .grey-text {
     color: grey;
+}
+
+#cv table {
+    width: 100%;
+}
+
+#cv td:nth-child(2) {
+    text-align: end;
 }

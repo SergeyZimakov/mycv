@@ -1,5 +1,101 @@
 import { state } from "./state.js";
 
+async function fillCVFromFile() {
+  const cv = document.getElementById('cv-section-content');
+
+  const convertToHtmlOptions = {
+    styleMap: [
+      "p.Style1 => h1"
+    ]
+  };
+
+  try {
+    const doc = await fetch("./cv/Zimakov_Resume_Eng.docx")
+    const buffer = await doc.arrayBuffer();
+    const converted = await mammoth.convertToHtml({ arrayBuffer: buffer }, convertToHtmlOptions);
+
+    const parser = new DOMParser();
+    const document = parser.parseFromString(converted.value, "text/html");
+
+    const sections = [];
+    let current = null;
+
+    document.body.childNodes.forEach(node => {
+      if (node.nodeName === "H1") {
+        if (current) sections.push(current);
+        current = { title: node.textContent, content: "" };
+      } else if (current) {
+        if (node.nodeName === "TABLE") {
+          const parsed = parseTableToDivs(node);
+          current.content += parsed.outerHTML;
+        }
+        else {
+          current.content += node.outerHTML || node.textContent;
+        }
+      }
+    });
+    if (current) sections.push(current);
+    
+    sections.forEach(section => {
+      cv.innerHTML += getCVSectionHTML(section);
+    });
+    cv.innerHTML += getDownloadCVHtml();
+
+  } catch (error) {
+    window.alert(`Error: ${error.message}`);
+  }
+}
+
+function parseTableToDivs(tableNode) {
+  const rows = tableNode.querySelectorAll("tr");
+  if (rows.length > 1) return tableNode;
+  const row = rows[0];
+  const tds = row.querySelectorAll("td");
+  if (tds.length < 2) return;
+
+  const [first, second] = tds;
+  const [title, place = ""] = (first.innerText || "").split("|").map(s => s.trim());
+  const dates = second.innerText || "";
+
+  const expDiv = document.createElement("div");
+
+  expDiv.innerHTML = `
+    <div><span class="bold-text">${title}</span></div>
+    <div><span>${place}</span></div>
+    <div><span class="grey-text">${dates}</span></div>
+  `;
+
+  return expDiv;
+}
+
+function getCVSectionHTML(section) {
+  const id = section.title.toLowerCase().split(' ').join('-');
+  return `<div class="row justify-content-center">
+            <div class="col-9 card-cv">
+              <div class="header">
+                <h1>${section.title}</h1>
+              </div>
+              <div id="${id}" class="content">${section.content}</div>        
+            </div>
+          </div>`;
+}
+
+function getDownloadCVHtml() {
+  const engCV = state.cvFiles.filter(cv => cv.name.endsWith('(Eng)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  const hebCV = state.cvFiles.filter(cv => cv.name.endsWith('(Heb)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
+  return `
+    <div class="row justify-content-center">
+      <div class="col-9 card-cv">
+        <div class="header">
+          <h1>Download CV</h1>
+        </div>
+        <div id="download-cv-eng" class="content d-flex flex-wrap justify-content-center">${engCV}</div>
+        <div id="download-cv-heb" class="content d-flex flex-wrap justify-content-center">${hebCV}</div>
+      </div>           
+    </div>
+  `
+}
+
 function toggleModalNavBar() {
   $("#modal-nav").modal('toggle');
 }
@@ -90,112 +186,9 @@ function fillMyData() {
   document.getElementById('contact-email').innerText = state.email;
 }
 
-function fillDownloadCV() {
-  document.getElementById('download-cv-eng').innerHTML = state.cvFiles.filter(cv => cv.name.endsWith('(Eng)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
-  document.getElementById('download-cv-heb').innerHTML = state.cvFiles.filter(cv => cv.name.endsWith('(Heb)')).map(cv => `<a class='cv-download-btn' href='${cv.link}' target='_blank' rel='noopener noreferrer'>${cv.name}</a>`).join('');
-}
-
-function fillTextListDiv(divId) {
-  const mainDiv = document.getElementById(divId);
-  let items = [];
-  switch (divId) {
-    case 'about-me':
-      items = state.aboutMeItems;
-      break;
-    case 'technical-skills':
-      items = state.technicalSkillsItems;
-      break;
-    case 'skills':
-      items = state.skillsItems;
-      break;
-    case 'languages':
-      items = state.languagesItems;
-      break;
-    default:
-      break;
-  }
-  mainDiv.innerHTML += items.map(i => `<p>${i}</p>`).join('');
-}
-
-function fillExperienceOrEduction(option) {
-  const mainDiv = option === 'education'
-    ? document.getElementById('education')
-    : document.getElementById('work-experience');
-  
-  const items = option === 'education'
-    ? state.educationItems
-    : state.workExperienceItems;
-
-  items.forEach(item => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'content-card';
-    if (!isEmptyString(item.position)) {
-      itemDiv.innerHTML += `<div><span class='bold-text'>${item.position}</span></div>`;
-    }
-
-    if (!isEmptyString(item.place)) {
-      itemDiv.innerHTML += `<div><span>${item.place}</span></div>`;
-    }
-
-    if (!isEmptyString(item.dates)) {
-      itemDiv.innerHTML += `<div><span class='grey-text'>${item.dates}</span></div>`;
-    }
-
-    if (item.description.length) {
-      const descriptionItems = item.description.map(i => `<li>${i}</li>`).join('');
-      itemDiv.innerHTML += `<ul class='description-list'>${descriptionItems}</ul>`;
-    }
-
-    mainDiv.append(itemDiv);
-  });
-}
-
-function fillProjects() {
-  const mainDiv = document.getElementById("my-projects");
-  state.projectItems.forEach(item => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'content-card';
-
-    if (!isEmptyString(item.name)) {
-      itemDiv.innerHTML += `<div><span class='bold-text'>${item.name}</span></div>`;
-    }
-
-    if (!isEmptyString(item.technologies)) {
-      const year = !isEmptyString(item.year) ? ` - ${item.year}` : '';
-      itemDiv.innerHTML += `<div><span class='grey-text'>${item.technologies}${year}</span></div>`;
-    }
-
-    if (item.description.length) {
-      const descriptionItems = item.description.map(i => `<li>${i}</li>`).join('');
-      itemDiv.innerHTML += `<ul class='description-list'>${descriptionItems}</ul>`;
-    }
-
-    if (item.links.length) {
-      itemDiv.innerHTML += item.links.map(i => `<p class='text'>${i.name}: <a href='${i.link}' target='_blank' rel='noopener noreferrer'>${i.link}</a></p>`);
-    }
-
-    if (item.images.length) {
-      itemDiv.innerHTML += item.images.map(i => `<div class='card-project-image'><img src='${i}' alt=''></div>`).join('');
-    }
-
-    mainDiv.append(itemDiv);
-  });
-}
- 
-function isEmptyString(str) {
-  return str === '';
-}
-
 function init() {
   fillMyData();
-  fillTextListDiv('about-me');
-  fillExperienceOrEduction('experience');
-  fillExperienceOrEduction('education');
-  fillTextListDiv('technical-skills');
-  fillTextListDiv('skills');
-  fillTextListDiv('languages');
-  fillDownloadCV();
-  fillProjects();
+  fillCVFromFile();
 }
 
 init();

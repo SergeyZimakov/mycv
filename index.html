@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="style/cv.css">
     <link rel="stylesheet" type="text/css" href="style/contact.css">
     <link rel="stylesheet" type="text/css" href="style/card-home.css">
+    <script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
 </head>
 <body>
 
@@ -31,7 +32,6 @@
             <div class="row align-items-center">
               <a href="#home" class="col nav-item">Home</a>
               <a href="#cv" class="col nav-item">CV</a>
-              <a href="#projects" class="col nav-item">My Projects</a>
               <a href="#contact" class="col nav-item">Contact</a>
             </div>
           </div>
@@ -57,7 +57,6 @@
             <div class="modal-body">
                 <a href="#home" class="row nav-item" onclick="toggleModalNavBar()">Home</a>
                 <a href="#cv" class="row nav-item" onclick="toggleModalNavBar()">CV</a>
-                <a href="#projects" class="row nav-item" onclick="toggleModalNavBar()">My Projects</a>
                 <a href="#contact" class="row nav-item" onclick="toggleModalNavBar()">Contact</a>
             </div>
         </div>
@@ -113,84 +112,7 @@
         <div class="section-header">
           <h1>CV</h1>
         </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>About Me</h1>
-            </div>
-            <div id="about-me" class="content"></div>        
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>Work Experience</h1>
-            </div>
-            <div id="work-experience" class="content"></div>
-          </div>           
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>Education</h1>
-            </div>
-            <div id="education" class="content"></div>
-          </div>           
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>Technical Skills</h1>
-            </div>
-            <div class="content">
-              <div class="d-flex justify-content-start">
-                <div id="technical-skills" style="margin: 10px;"></div>
-              </div>
-            </div>
-          </div>           
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>Skills</h1>
-            </div>
-            <div id="skills" class="content"></div>
-          </div>           
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>Languages</h1>
-            </div>
-            <div id="languages" class="content"></div>
-          </div>           
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div class="header">
-              <h1>Download CV</h1>
-            </div>
-            <div id="download-cv-eng" class="content d-flex flex-wrap justify-content-center"></div>
-            <div id="download-cv-heb" class="content d-flex flex-wrap justify-content-center"></div>
-          </div>           
-        </div>
-      </div>
-  
-    </section>
-  
-    <section id="projects">
-      <div class="container-fluid">
-        <div class="section-header">
-          <h1>My Projects</h1>
-        </div>
-        <p class="comment">*Full list of projects you can see on my git accaunt</p>
-        <div class="row justify-content-center">
-          <div class="col-9 card-cv">
-            <div id="my-projects" class="content"></div>
-        </div>
-          
-        
-        </div>
+        <div id="cv-section-content"></div>
       </div>
     </section>
   
