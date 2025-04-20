@@ -1,5 +1,84 @@
 import { state } from "./state.js";
 
+function fillCVFromFile() {
+  const cv = document.getElementById('cv');
+
+
+  const convertToHtmlOptions = {
+    styleMap: [
+      "p.Style1 => h1"
+    ]
+  };
+
+  fetch("./cv/Zimakov_Resume_Eng.docx")
+    .then(res => res.arrayBuffer())
+    .then(buffer => mammoth.convertToHtml({ arrayBuffer: buffer }, convertToHtmlOptions))
+    .then(result => {
+      const html = result.value;
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+  
+      const sections = [];
+      let current = null;
+  
+      doc.body.childNodes.forEach(node => {
+        if (node.nodeName === "H1") {
+          if (current) sections.push(current);
+          current = { title: node.textContent, content: "" };
+        } else if (current) {
+          if (node.nodeName === "TABLE") {
+            const parsed = parseTableToDivs(node);
+            current.content += parsed.outerHTML;
+          }
+          else {
+            current.content += node.outerHTML || node.textContent;
+          }
+        }
+      });
+      if (current) sections.push(current);
+      
+      sections.forEach(section => {
+        cv.innerHTML += getCVSectionHTML(section);
+      });
+      
+    })
+    .catch(err => window.alert("Error:", err.message));
+}
+
+function parseTableToDivs(tableNode) {
+  const rows = tableNode.querySelectorAll("tr");
+  if (rows.length > 1) return tableNode;
+  const row = rows[0];
+  const tds = row.querySelectorAll("td");
+  if (tds.length < 2) return;
+
+  const [first, second] = tds;
+  const [title, place = ""] = (first.innerText || "").split("|").map(s => s.trim());
+  const dates = second.innerText || "";
+
+  const expDiv = document.createElement("div");
+
+  expDiv.innerHTML = `
+    <div><span class="bold-text">${title}</span></div>
+    <div><span>${place}</span></div>
+    <div><span class="grey-text">${dates}</span></div>
+  `;
+
+  return expDiv;
+}
+
+function getCVSectionHTML(section) {
+  const id = section.title.toLowerCase().split(' ').join('-');
+  return `<div class="row justify-content-center">
+            <div class="col-9 card-cv">
+              <div class="header">
+                <h1>${section.title}</h1>
+              </div>
+              <div id="${id}" class="content">${section.content}</div>        
+            </div>
+          </div>`;
+}
+
 function toggleModalNavBar() {
   $("#modal-nav").modal('toggle');
 }
@@ -196,6 +275,7 @@ function init() {
   fillTextListDiv('languages');
   fillDownloadCV();
   fillProjects();
+  fillCVFromFile();
 }
 
 init();
