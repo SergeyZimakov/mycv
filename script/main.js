@@ -93,13 +93,8 @@ function getDownloadCVHtml() {
         <div id="download-cv-heb" class="content d-flex flex-wrap justify-content-center">${hebCV}</div>
       </div>           
     </div>
-  `
+  `;
 }
-
-function toggleModalNavBar() {
-  $("#modal-nav").modal('toggle');
-}
-
 
 function isElementInViewport (el) {
   if (typeof jQuery === "function" && el instanceof jQuery) {
@@ -190,5 +185,11 @@ function init() {
   fillMyData();
   fillCVFromFile();
 }
+
+document.querySelectorAll(".toggleNavBarBtn").forEach(el => {
+  el.addEventListener("click", () => {
+    $("#modal-nav").modal('toggle');
+  });
+});
 
 init();
