@@ -1,40 +1,56 @@
 .card-home {
-    box-shadow: 13px 13px 18px -7px rgba(0,0,0,0.83);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,250,252,0.95));
 }
 
 .card-home .title {
-    background-color: rgb(106, 140, 179);
+    background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-dark) 100%);
     color: white;
-    padding: 10px;
+    padding: 24px 20px;
     text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
 }
 
 .card-home img {
-    width: 300px;
+    display: block;
+    width: min(240px, 100%);
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 12px 30px rgba(33, 52, 71, 0.2);
+    margin: 22px auto;
 }
 
 .card-home .content {
-    margin: 30px 0;
+    margin: 24px 0 0;
+    padding: 0 20px 16px;
 }
 
 .card-home .content .label {
     font-weight: bold;
+    color: var(--main-color-dark);
 }
 
 .card-home .content td {
-    padding: 15px 15px 15px 0;
+    padding: 12px 12px 12px 0;
+    vertical-align: top;
 }
 
 .card-home a {
     display: inline;
-    color: black;
+    color: var(--text);
     text-decoration: underline;
     margin-right: 5px;
 }
 
 .card-home .social-media-icons {
-    background-color: rgb(106, 140, 179);
-    padding: 10px;
+    background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-dark) 100%);
+    padding: 14px 20px;
+    display: flex;
+    gap: 10px;
 }
 
 .card-home .social-media-icons .bi {
@@ -44,9 +60,10 @@
     cursor: pointer;
     font-size: 20px;
     color: white;
+    transition: all 0.2s ease;
 }
 
 .card-home .social-media-icons .bi:hover {
-    color: rgb(106, 140, 179);
+    color: var(--main-color-dark);
     background-color: white;
 }

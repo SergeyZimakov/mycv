@@ -7,29 +7,54 @@ nav {
 }
 
 .top-nav-bar {
-    background-color: rgb(133, 130, 136);
+    background: rgba(17, 24, 39, 0.96);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.16);
 }
-
-
-
 
 .nav-item, .modal-nav-title {
     color: white;
     font-weight: bold;
-    padding: 20px;
+    padding: 18px 20px;
     text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-toggle {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    appearance: none;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 8px 0;
+    margin-top: 8px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.2);
+}
+
+.dropdown-item {
+    padding: 10px 16px;
+    color: var(--text);
+}
+
+.dropdown-item:hover {
+    background-color: rgba(106, 140, 179, 0.12);
+    color: var(--main-color-dark);
 }
 
 .active-nav-item {
     color: white;
-    background-color: rgb(106, 140, 179);
+    background: linear-gradient(135deg, var(--main-color) 0%, var(--main-color-dark) 100%);
 }
 
 .nav-item:hover {
     color: white;
-    background-color: rgb(185, 183, 187);
+    background-color: rgba(255, 255, 255, 0.12);
 }
-
 
 .nav-icon {
     display: none;
@@ -39,31 +64,29 @@ nav {
 }
 
 .modal-nav .modal-content {
-    background-color: rgb(133, 130, 136);
+    background: rgba(17, 24, 39, 0.97);
 }
 
 .modal-nav {
     position: fixed;
     z-index: 99999;
-  }
-  .modal-nav .modal-dialog {
+}
+
+.modal-nav .modal-dialog {
     position: fixed;
     margin: auto;
     transform: translate3d(0%, 0, 0);
-  }
+}
 
-  .modal-nav.fade .modal-dialog{
+.modal-nav.fade .modal-dialog {
     left: -50%;
     transition: opacity 0.3s linear, left 0.3s ease-out;
-  }
+}
 
-  .modal-nav.fade.show .modal-dialog{
+.modal-nav.fade.show .modal-dialog {
     left: 0;
     box-shadow: 0px 0px 19px rgba(0,0,0,.5);
-  }
-
-
-
+}
 
 @media (max-width: 991.98px) {
     .nav-icon {
@@ -77,6 +100,4 @@ nav {
     .nav-item {
         text-align: left;
     }
-
-    
 }
