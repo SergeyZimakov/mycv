@@ -1,6 +1,6 @@
 export const state = {
     name: "Sergey Zimakov",
-    position: "Backend Developer",
+    position: "Backend & Embedded Software Engineer",
     tel: "+975544366021",
     email: "zimakovs93@gmail.com",
     linkedIn: "https://www.linkedin.com/in/sergey-zimakov/",
