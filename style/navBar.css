@@ -65,6 +65,9 @@ nav {
 
 .modal-nav .modal-content {
     background: rgba(17, 24, 39, 0.97);
+    border: none;
+    border-radius: 0;
+    min-height: 100vh;
 }
 
 .modal-nav {
@@ -74,18 +77,48 @@ nav {
 
 .modal-nav .modal-dialog {
     position: fixed;
-    margin: auto;
-    transform: translate3d(0%, 0, 0);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    margin: 0;
+    transform: translate3d(-100%, 0, 0);
 }
 
 .modal-nav.fade .modal-dialog {
-    left: -50%;
-    transition: opacity 0.3s linear, left 0.3s ease-out;
+    transition: opacity 0.3s linear, transform 0.3s ease-out;
 }
 
 .modal-nav.fade.show .modal-dialog {
-    left: 0;
+    transform: translate3d(0, 0, 0);
     box-shadow: 0px 0px 19px rgba(0,0,0,.5);
+}
+
+.modal-nav .modal-body {
+    padding: 1rem 0 2rem;
+}
+
+.mobile-nav-downloads {
+    margin-top: 1rem;
+    padding: 0 1rem;
+}
+
+.mobile-nav-download-group {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+}
+
+.mobile-nav-download-title {
+    color: white;
+    font-weight: 700;
+    padding: 0.5rem 1rem 0.75rem;
+}
+
+.mobile-nav-download-links .mobile-download-link {
+    padding: 0.9rem 1rem;
+    margin: 0.2rem 0;
 }
 
 @media (max-width: 991.98px) {

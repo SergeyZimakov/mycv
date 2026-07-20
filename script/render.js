@@ -125,11 +125,8 @@ export function setActiveNavLink(hash) {
 }
 
 export function renderDownloadCvDropdown(state) {
-  const container = document.getElementById("nav-download-cv");
-
-  if (!container) {
-    return;
-  }
+  const desktopContainer = document.getElementById("nav-download-cv");
+  const mobileContainer = document.getElementById("mobile-nav-download-cv");
 
   const items = state.cvFiles
     .map(
@@ -137,26 +134,53 @@ export function renderDownloadCvDropdown(state) {
     )
     .join("");
 
-  container.innerHTML = `
-    <div class="dropdown">
-      <button class="nav-item dropdown-toggle" type="button" id="cv-download-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        Download CV
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="cv-download-dropdown">
-        ${items}
-      </ul>
-    </div>
-  `;
+  if (desktopContainer) {
+    desktopContainer.innerHTML = `
+      <div class="dropdown">
+        <button class="nav-item dropdown-toggle" type="button" id="cv-download-dropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Download CV
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="cv-download-dropdown">
+          ${items}
+        </ul>
+      </div>
+    `;
+  }
+
+  if (mobileContainer) {
+    mobileContainer.innerHTML = `
+      <div class="mobile-nav-download-group">
+        <div class="mobile-nav-download-title">Download CV</div>
+        <div class="mobile-nav-download-links">
+          ${state.cvFiles
+            .map((cv) => `<a class="row nav-item mobile-download-link" href="${cv.link}" target="_blank" rel="noopener noreferrer">${cv.name}</a>`)
+            .join("")}
+        </div>
+      </div>
+    `;
+  }
+}
+
+function getModalInstance(modalElement) {
+  if (!modalElement || !window.bootstrap?.Modal) {
+    return null;
+  }
+
+  if (typeof window.bootstrap.Modal.getOrCreateInstance === "function") {
+    return window.bootstrap.Modal.getOrCreateInstance(modalElement);
+  }
+
+  return window.bootstrap.Modal.getInstance(modalElement) || new window.bootstrap.Modal(modalElement);
 }
 
 function closeMobileMenu() {
   const modalElement = document.getElementById("modal-nav");
+  const modal = getModalInstance(modalElement);
 
-  if (!modalElement || !window.bootstrap) {
+  if (!modal) {
     return;
   }
 
-  const modal = window.bootstrap.Modal.getInstance(modalElement) || new window.bootstrap.Modal(modalElement);
   modal.hide();
 }
 
@@ -187,11 +211,12 @@ export function bindMobileMenuToggle() {
   document.querySelectorAll(".toggleNavBarBtn").forEach((element) => {
     element.addEventListener("click", () => {
       const modalElement = document.getElementById("modal-nav");
-      if (!modalElement || !window.bootstrap) {
+      const modal = getModalInstance(modalElement);
+
+      if (!modal) {
         return;
       }
 
-      const modal = window.bootstrap.Modal.getOrCreateInstance(modalElement);
       modal.toggle();
     });
   });
